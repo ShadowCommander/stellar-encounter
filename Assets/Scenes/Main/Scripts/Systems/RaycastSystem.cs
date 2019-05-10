@@ -8,23 +8,25 @@
 
 //namespace ECS
 //{
-//    public class DamageSystem : JobComponentSystem
+//    public class RaycastSystem : JobComponentSystem
 //    {
+//        NativeArray<RaycastHit> RaycastHits;
+
 //        [BurstCompile]
-//        public struct DamageJob : IJobForEachWithEntity<Damage>
+//        public struct RaycastJob : IJobForEach<Translation, Rotation, RaycastData>
 //        {
 //            public float deltaTime;
 
-//            public void Execute(Entity entity, int index, [ReadOnly] ref Damage damage)
+//            public void Execute(ref Translation translation, [ReadOnly] ref Rotation rotation, [ReadOnly] ref RaycastData raycastData)
 //            {
-//                throw new System.NotImplementedException();
+
 //            }
 //        }
 
 //        // OnUpdate runs on the main thread.
 //        protected override JobHandle OnUpdate(JobHandle inputDependencies)
 //        {
-//            var job = new DamageJob()
+//            var job = new RaycastJob()
 //            {
 //                deltaTime = Time.deltaTime
 //            };

@@ -4,13 +4,13 @@ using UnityEngine;
 namespace ECS
 {
     [RequiresEntityConversion]
-    public class MovementProxy : MonoBehaviour, IConvertGameObjectToEntity
+    public class VelocityProxy : MonoBehaviour, IConvertGameObjectToEntity
     {
         public float Speed = 1f;
 
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            var data = new Movement { Value = Speed };
+            var data = new Velocity { Value = Speed };
             dstManager.AddComponentData(entity, data);
         }
     }

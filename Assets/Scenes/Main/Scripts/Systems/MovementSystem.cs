@@ -11,14 +11,14 @@ namespace ECS
     public class MovementSystem : JobComponentSystem
     {
         [BurstCompile]
-        public struct MoveSpeedJob : IJobForEach<Translation, Rotation, Movement>
+        public struct VelocityJob : IJobForEach<Translation, Rotation, Velocity>
         {
             public float deltaTime;
 
-            public void Execute(ref Translation translation, [ReadOnly] ref Rotation rotation, [ReadOnly] ref Movement speed)
+            public void Execute(ref Translation translation, [ReadOnly] ref Rotation rotation, [ReadOnly] ref Velocity velocity)
             {
                 float3 value = translation.Value;
-                value += deltaTime * speed.Value * math.mul(rotation.Value, new float3(1f, 0f, 0f));
+                value += deltaTime * velocity.Value * math.mul(rotation.Value, new float3(1f, 0f, 0f));
                 translation.Value = value;
             }
         }
@@ -26,7 +26,7 @@ namespace ECS
         // OnUpdate runs on the main thread.
         protected override JobHandle OnUpdate(JobHandle inputDependencies)
         {
-            var job = new MoveSpeedJob()
+            var job = new VelocityJob()
             {
                 deltaTime = Time.deltaTime
             };
