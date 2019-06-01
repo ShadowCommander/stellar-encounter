@@ -112,3 +112,47 @@
 //        }
 //    }
 //}
+
+//private NativeList<RaycastCommand> raycastCommands;
+//private NativeList<RaycastHit> raycastHits;
+
+//struct PrepareRaycastCommands : IJobForEachWithEntity<Translation, Rotation, Velocity>
+//{
+//    public float DeltaTime;
+//    public NativeList<RaycastCommand> raycastCommands;
+
+//    //public void Execute(int i)
+//    //{
+//    //    // figure out how far the object we are testing collision for
+//    //    // wants to move in total. Our collision raycast only needs to be
+//    //    // that far.
+//    //    float distance = (Velocities[i] * DeltaTime).magnitude;
+//    //    Raycasts[i] = new RaycastCommand(Positions[i], Velocities[i], distance);
+//    //}
+
+//    public void Execute(Entity entity, int index, [ReadOnly] ref Translation translation, [ReadOnly] ref Rotation rotation, [ReadOnly] ref Velocity velocity)
+//    {
+//        //raycastInput = new RaycastInput
+//        //{
+//        //    Ray = new Ray { Origin = translation.Value, Direction = math.mul(rotation.Value, new float3(1f, 0f, 0f)) }
+//        //};
+//        //raycastCommands.Add(new RaycastCommand(translation.Value, math.mul(rotation.Value, new float3(1f, 0f, 0f)), velocity.Value * DeltaTime));
+//    }
+//}
+//public void Start()
+//{
+//    raycastCommands = new NativeList<RaycastCommand>(Allocator.Persistent);
+//}
+
+
+//var setupRaycastsJob = new PrepareRaycastCommands()
+//{
+//    DeltaTime = deltaTime,
+//    raycastCommands = raycastCommands
+//};
+
+//var setupDependency = setupRaycastsJob.Schedule(this, inputDependencies);
+
+//raycastHits = new NativeList<RaycastHit>(Allocator.Persistent);
+
+//            var raycastDependency = RaycastCommand.ScheduleBatch(raycastCommands, raycastHits.AsArray(), 32, setupDependency);

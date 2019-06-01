@@ -8,7 +8,7 @@ namespace ECS
     [Serializable]
     public struct RaycastData : IComponentData
     {
-        public float Value;
-        public NativeArray<RaycastHit> RaycastHits;
+        public RaycastHit RaycastHit;
+        public bool Hit;
     }
 }
